@@ -52,6 +52,53 @@ const modals = () => {
 
 /***/ }),
 
+/***/ "./src/js/modules/tabs.js":
+/*!********************************!*\
+  !*** ./src/js/modules/tabs.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+const tabs = (headerSelector, tabSelector, contentSelector, activeClass) => {
+  const header = document.querySelector(headerSelector);
+  const tab = document.querySelectorAll(tabSelector);
+  const content = document.querySelectorAll(contentSelector);
+  // const header = document.querySelector(headerSelector);
+
+  function hideTabContent() {
+    content.forEach(item => {
+      item.style.display = "none";
+    });
+    tab.forEach(item => {
+      item.classList.remove(activeClass);
+    });
+  }
+  function showTabContent(index = 0) {
+    content[index].style.display = "block";
+    tab[index].classList.add(activeClass);
+  }
+  hideTabContent();
+  showTabContent();
+  header.addEventListener('click', e => {
+    const target = e.target;
+    if (target && (target.classList.contains(tabSelector.replace(/\./, "")) || target.parentNode.classList.contains(tabSelector.replace(/\./, "")))) {
+      tab.forEach((item, index) => {
+        if (target === item || target.parentNode === item) {
+          hideTabContent();
+          showTabContent(index);
+        }
+      });
+    }
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (tabs);
+
+/***/ }),
+
 /***/ "./src/js/slider.js":
 /*!**************************!*\
   !*** ./src/js/slider.js ***!
@@ -13964,10 +14011,14 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _slider_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./slider.js */ "./src/js/slider.js");
 /* harmony import */ var _modules_modals_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/modals.js */ "./src/js/modules/modals.js");
+/* harmony import */ var _modules_tabs_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/tabs.js */ "./src/js/modules/tabs.js");
+
 
 
 window.addEventListener('DOMContentLoaded', () => {
   (0,_modules_modals_js__WEBPACK_IMPORTED_MODULE_1__["default"])();
+  (0,_modules_tabs_js__WEBPACK_IMPORTED_MODULE_2__["default"])('.glazing_slider', '.glazing_block', '.glazing_content', 'activ');
+  (0,_modules_tabs_js__WEBPACK_IMPORTED_MODULE_2__["default"])('.decoration_slider', '.no_click', '.decoration_content > div > div', 'after_click');
 });
 })();
 
