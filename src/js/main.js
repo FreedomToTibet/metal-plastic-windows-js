@@ -4,6 +4,7 @@ import tabs from './modules/tabs.js';
 import forms from './modules/forms.js';
 import changeModalState from './modules/changeModalState.js';
 import timer from './modules/timer.js';
+import images from './modules/images.js';
 
 window.addEventListener('DOMContentLoaded', () => {
 	"use strict";
@@ -13,7 +14,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		type: "Cold"
 	};
 
-	let deadline = '2024-02-01';
+	let deadline = '2024-01-15';
 
 	changeModalState(modalState);
 	modals();
@@ -22,4 +23,5 @@ window.addEventListener('DOMContentLoaded', () => {
 	tabs('.balcon_icons', '.balcon_icons_img', '.big_img > img', 'do_image_more', 'inline-block');
 	forms(modalState);
 	timer('.container1', deadline);
+	images();
 });

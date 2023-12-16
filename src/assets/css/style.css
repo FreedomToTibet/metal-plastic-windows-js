@@ -587,6 +587,7 @@ textarea:focus {
 
 .works img {
   margin-bottom: 3rem;
+	max-height: 80vh;
 }
 
 .works a[data-fancybox="gallery"] .lupa {
