@@ -1,16 +1,35 @@
 "use strict";
 
 const gulp = require("gulp");
+const sourcemaps = require("gulp-sourcemaps");
+const concat = require("gulp-concat");
+const csso = require("gulp-csso");
+const autoprefixer = require("autoprefixer");
+const postcss = require("gulp-postcss");
+const htmlmin = require("gulp-htmlmin");
 const webpack = require("webpack-stream");
 const browsersync = require("browser-sync");
+
 
 const dist = "./dist/";
 // const dist = "c:/Users/LEGION/OneDrive/Документы/IT/OpenServer/domains/test";
 
 gulp.task("copy-html", () => {
     return gulp.src("./src/index.html")
+								.pipe(htmlmin({ collapseWhitespace: true }))
                 .pipe(gulp.dest(dist))
                 .pipe(browsersync.stream());
+});
+
+gulp.task('styles', function() {
+		return gulp.src("src/assets/**/**/*.css")
+				.pipe(sourcemaps.init())
+				.pipe(postcss([ autoprefixer() ]))
+				.pipe(csso())
+				.pipe(concat('style.min.css'))
+				.pipe(sourcemaps.write("./"))
+				.pipe(gulp.dest("dist/css"))
+				.pipe(browsersync.stream());
 });
 
 gulp.task("build-js", () => {
@@ -61,9 +80,10 @@ gulp.task("watch", () => {
     gulp.watch("./src/index.html", gulp.parallel("copy-html"));
     gulp.watch("./src/assets/**/*.*", gulp.parallel("copy-assets"));
     gulp.watch("./src/js/**/*.js", gulp.parallel("build-js"));
+    gulp.watch("./src/assets/css/**/*.css", gulp.parallel("styles"));
 });
 
-gulp.task("build", gulp.parallel("copy-html", "copy-assets", "build-js"));
+gulp.task("build", gulp.parallel("copy-html", "copy-assets", "build-js", "styles"));
 
 gulp.task("build-prod-js", () => {
     return gulp.src("./src/js/main.js")

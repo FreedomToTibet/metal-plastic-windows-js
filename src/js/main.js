@@ -14,7 +14,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		type: "Cold"
 	};
 
-	let deadline = '2024-01-15';
+	let deadline = '2024-03-15';
 
 	changeModalState(modalState);
 	modals();

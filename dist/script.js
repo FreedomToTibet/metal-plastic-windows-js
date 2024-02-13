@@ -159,6 +159,7 @@ const images = () => {
   const imgPopup = document.createElement('div');
   const workSection = document.querySelector('.works');
   const bigImage = document.createElement('img');
+  const scrollWidth = calculateScroll();
   imgPopup.classList.add('popup');
   workSection.appendChild(imgPopup);
   imgPopup.style.justifyContent = 'center';
@@ -173,12 +174,25 @@ const images = () => {
       const path = target.parentNode.getAttribute('href');
       bigImage.setAttribute('src', path);
       document.body.style.overflow = "hidden";
+      document.body.style.marginRight = `${scrollWidth}px`;
     }
     if (target && target.matches('div.popup')) {
       imgPopup.style.display = 'none';
       document.body.style.overflow = "";
+      document.body.style.marginRight = `0px`;
     }
   });
+  function calculateScroll() {
+    let div = document.createElement('div');
+    div.style.width = '50px';
+    div.style.height = '50px';
+    div.style.overflow = 'scroll';
+    div.style.visibility = 'hidden';
+    document.body.appendChild(div);
+    let scrollWidth = div.offsetWidth - div.clientWidth;
+    div.remove();
+    return scrollWidth;
+  }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (images);
 
@@ -14294,7 +14308,7 @@ window.addEventListener('DOMContentLoaded', () => {
     form: 0,
     type: "Cold"
   };
-  let deadline = '2024-01-15';
+  let deadline = '2024-03-15';
   (0,_modules_changeModalState_js__WEBPACK_IMPORTED_MODULE_4__["default"])(modalState);
   (0,_modules_modals_js__WEBPACK_IMPORTED_MODULE_1__["default"])();
   (0,_modules_tabs_js__WEBPACK_IMPORTED_MODULE_2__["default"])('.glazing_slider', '.glazing_block', '.glazing_content', 'activ');

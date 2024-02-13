@@ -14,16 +14,23 @@
 	"devDependencies": {
 		"@babel/core": "^7.22.5",
 		"@babel/preset-env": "^7.22.5",
+		"autoprefixer": "^10.4.16",
 		"babel": "^6.23.0",
 		"babel-core": "^6.26.3",
 		"babel-loader": "^9.1.2",
 		"browser-sync": "^2.29.3",
 		"core-js": "^3.31.0",
 		"gulp": "^4.0.2",
+		"gulp-concat": "^2.6.1",
+		"gulp-csso": "^4.0.1",
+		"gulp-postcss": "^9.0.1",
+		"gulp-sourcemaps": "^3.0.0",
+		"postcss": "^8.4.32",
 		"webpack": "^5.86.0",
 		"webpack-stream": "^7.0.0"
 	},
 	"dependencies": {
+		"gulp-htmlmin": "^5.0.1",
 		"jquery": "^3.7.1",
 		"slick-carousel": "^1.8.1"
 	}
