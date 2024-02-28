@@ -8,13 +8,14 @@ import images from './modules/images.js';
 
 window.addEventListener('DOMContentLoaded', () => {
 	"use strict";
-
+	
 	let modalState = {
 		form: 0,
-		type: "Cold"
+		type: "tree",
+		profile: "Cold",
 	};
 
-	let deadline = '2024-03-15';
+	let deadline = '2024-03-25';
 
 	changeModalState(modalState);
 	modals();

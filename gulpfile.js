@@ -28,7 +28,7 @@ gulp.task('styles', function() {
 				.pipe(csso())
 				.pipe(concat('style.min.css'))
 				.pipe(sourcemaps.write("./"))
-				.pipe(gulp.dest("dist/css"))
+				.pipe(gulp.dest(`${dist}/css`))
 				.pipe(browsersync.stream());
 });
 
@@ -60,7 +60,7 @@ gulp.task("build-js", () => {
                         ]
                       }
                 }))
-                .pipe(gulp.dest(dist))
+                .pipe(gulp.dest(`${dist}/js`))
                 .on("end", browsersync.reload);
 });
 

@@ -52,9 +52,22 @@ const forms = (state) => {
 				.catch(() => statusMessage.textContent = message.fail)
 				.finally(() => {
 					clearInputs();
+
+					for (let key in state) {
+						if(key !== 'form' && key !== 'type' && key !== 'profile')
+						delete state[key];
+					}
+
+					if (item.getAttribute('data-calc') === 'end') {
+						setTimeout(() => {
+							document.querySelector('.popup_calc_end').style.display = 'none';
+							document.body.style.overflow = '';
+						}, 3000);
+					}
+
 					setTimeout(() => {
 						statusMessage.remove();
-					}, 3000);
+					}, 2000);
 				});
 		});
 	});
