@@ -103,20 +103,3 @@ const modals = () => {
 };
 
 export default modals;
-
-// if (modal.classList.contains('popup_calc')) {
-// if (modal.classList.contains('popup_calc_content') && (!!state.width || !!state.height)) {
-
-// if (!state.width ) {
-// 	console.log('state.width:', state.width);
-// 	alert('Please, select the type of window profile');
-// 	document.querySelector('.button.popup_calc_button').style.background = 'linear-gradient(180deg, #e9e9e9 0, #d4d4d4 100%)';
-// 	console.log('document.querySelector:', document.querySelector('.button.popup_calc_button'));
-//  	item.disabled = true;
-// 	console.log('item.disabled:', item.disabled);
-// 	// e.removeEventListener();
-// }
-// }
-
-// if (btnDisabled === true) {item.style.background = 'linear-gradient(180deg, #e9e9e9 0, #d4d4d4 100%)';}
-// item.disabled = btnDisabled;

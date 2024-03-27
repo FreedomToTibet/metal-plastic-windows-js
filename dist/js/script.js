@@ -103,13 +103,26 @@ const forms = state => {
     success: 'Thank you! Waiting for callback soon.',
     fail: 'Something went wrong'
   };
+
+  // const postData = async (url, data) => {
+  //   document.querySelector('.status').textContent = message.loading;
+  //   let result = await fetch(url, {
+  //     method: 'POST',
+  //     body: data,
+  //   });
+
+  //   return await result.text();
+  // };
+
   const postData = async (url, data) => {
-    document.querySelector('.status').textContent = message.loading;
-    let result = await fetch(url, {
+    const result = await fetch(url, {
       method: "POST",
+      headers: {
+        'Content-type': 'application/json'
+      },
       body: data
     });
-    return await result.text();
+    return await result.json();
   };
   const clearInputs = () => {
     input.forEach(element => {
@@ -128,11 +141,14 @@ const forms = state => {
           formData.append(key, state[key]);
         }
       }
-      postData('assets/server.php', formData).then(result => {
+      const formJson = JSON.stringify(Object.fromEntries(formData.entries()));
+      console.log('formJson', formJson);
+      postData('https://65eeb08f08706c584d9bf69f.mockapi.io/api/requests', formJson).then(result => {
         console.log(result);
         statusMessage.textContent = message.success;
       }).catch(() => statusMessage.textContent = message.fail).finally(() => {
         clearInputs();
+        item.reset();
         for (let key in state) {
           if (key !== 'form' && key !== 'type' && key !== 'profile') delete state[key];
         }
@@ -142,10 +158,53 @@ const forms = state => {
             document.body.style.overflow = '';
           }, 3000);
         }
+        if (item.getAttribute('data-form') === 'engineer') {
+          setTimeout(() => {
+            document.querySelector('.popup_engineer').style.display = 'none';
+            document.body.style.overflow = '';
+          }, 3000);
+        }
+        if (item.getAttribute('data-form') === 'popup') {
+          setTimeout(() => {
+            document.querySelector('#popup').style.display = 'none';
+            document.body.style.overflow = '';
+          }, 3000);
+        }
         setTimeout(() => {
           statusMessage.remove();
         }, 2000);
       });
+
+      // if(item.getAttribute('data-calc') == 'end') {
+      // 	for (let key in state) {
+      // 		formData.append(key, state[key]);
+      // 	}
+      // }
+
+      //   postData('assets/server.php', formData)
+      //     .then((result) => {
+      //       console.log(result);
+      //       statusMessage.textContent = message.success;
+      //     })
+      //     .catch(() => (statusMessage.textContent = message.fail))
+      //     .finally(() => {
+      //       clearInputs();
+
+      //       for (let key in state) {
+      //         if (key !== 'form' && key !== 'type' && key !== 'profile') delete state[key];
+      //       }
+
+      //       if (item.getAttribute('data-calc') === 'end') {
+      //         setTimeout(() => {
+      //           document.querySelector('.popup_calc_end').style.display = 'none';
+      //           document.body.style.overflow = '';
+      //         }, 3000);
+      //       }
+
+      //       setTimeout(() => {
+      //         statusMessage.remove();
+      //       }, 2000);
+      //     });
     });
   });
 };
@@ -296,23 +355,6 @@ const modals = () => {
   // showModalByTime('.popup', 60000);
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (modals);
-
-// if (modal.classList.contains('popup_calc')) {
-// if (modal.classList.contains('popup_calc_content') && (!!state.width || !!state.height)) {
-
-// if (!state.width ) {
-// 	console.log('state.width:', state.width);
-// 	alert('Please, select the type of window profile');
-// 	document.querySelector('.button.popup_calc_button').style.background = 'linear-gradient(180deg, #e9e9e9 0, #d4d4d4 100%)';
-// 	console.log('document.querySelector:', document.querySelector('.button.popup_calc_button'));
-//  	item.disabled = true;
-// 	console.log('item.disabled:', item.disabled);
-// 	// e.removeEventListener();
-// }
-// }
-
-// if (btnDisabled === true) {item.style.background = 'linear-gradient(180deg, #e9e9e9 0, #d4d4d4 100%)';}
-// item.disabled = btnDisabled;
 
 /***/ }),
 

@@ -843,12 +843,12 @@
 
 	<!-- Modals -->
 	<!-- Request a call -->
-	<div class="popup" data-modal>
+	<div class="popup" data-modal id="popup">
 		<div class="popup_dialog">
 			<div class="popup_content text-center">
 				<button type="button" class="popup_close"><strong>&times;</strong></button>
 				<div class="popup_form">
-					<form class="form" action="#">
+					<form class="form" action="#" data-form="popup">
 						<h2>Fill in your details <br>and click "Order a Call"</h2>
 						<input class="form-control form_input" name="user_name" required type="text" placeholder="Enter your name">
 						<input class="form-control form_input" name="user_phone" required type="text"
@@ -867,7 +867,7 @@
 			<div class="popup_content text-center">
 				<button type="button" class="popup_close"><strong>&times;</strong></button>
 				<div class="popup_form">
-					<form class="form" action="#">
+					<form class="form" action="#" data-form="engineer">
 						<h2>Sign up today for <br><span>a free measurement</span></h2>
 						<input class="form-control form_input" name="user_name" required type="text" placeholder="Enter your name">
 						<input class="form-control form_input" name="user_phone" required type="text"
