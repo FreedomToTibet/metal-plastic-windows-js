@@ -13,5 +13,3 @@
 - slick-carousel;
 - Webpack;
 - Gulp.
-
- 
